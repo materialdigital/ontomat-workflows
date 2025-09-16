@@ -1,0 +1,3 @@
+Scripts/*.rpy*
+Scripts/*.rec
+Scripts/abaqus_acis.log
