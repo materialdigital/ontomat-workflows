@@ -6,9 +6,23 @@ Created on Mon Sep 15 14:21:14 2025
 """
 
 
-def OntOMat_Query(material_id):
+def ontomat_query(material_id):
+    """
+    Return material parameters based on a SPARQL query to KG of OntOMat.
 
-    # for now only dummy stuff
+    Parameters
+    ----------
+    material_id : STRING
+        Unique ID of material.
+
+    Returns
+    -------
+    material : DICT
+        Relevant material parameters.
+
+    """
+
+    # For now dummy data
 
     if material_id == 'carbon':
         material = {'name': 'carbon',

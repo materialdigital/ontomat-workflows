@@ -1,0 +1,2065 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+mdb.Model(name='HexFiberArray')
+mdb.models['HexFiberArray'].ConstrainedSketch(name='HexPackSketch', sheetSize=
+    10.0)
+mdb.models['HexFiberArray'].sketches['HexPackSketch'].rectangle(point1=(0, 0), 
+    point2=(0.1, 0.45172162719572))
+mdb.models['HexFiberArray'].Part(dimensionality=THREE_D, name='HexPackPart', 
+    type=DEFORMABLE_BODY)
+mdb.models['HexFiberArray'].parts['HexPackPart'].BaseSolidExtrude(depth=
+    0.782404809180675, sketch=
+    mdb.models['HexFiberArray'].sketches['HexPackSketch'])
+mdb.models['HexFiberArray'].parts['HexPackPart'].DatumPlaneByThreePoints(
+    point1=(0.0, 0.0, 0.0), point2=(0.1, 0.0, 0.0), point3=(0.0, 
+    0.45172162719572, 0.0))
+mdb.models['HexFiberArray'].parts['HexPackPart'].features.changeKey(fromName=
+    'Datum plane-1', toName='d1')
+mdb.models['HexFiberArray'].parts['HexPackPart'].DatumPlaneByThreePoints(
+    point1=(0.0, 0.0, 0.0), point2=(0.1, 0.0, 0.0), point3=(0.0, 0.0, 
+    0.782404809180675))
+mdb.models['HexFiberArray'].parts['HexPackPart'].features.changeKey(fromName=
+    'Datum plane-1', toName='d2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].DatumPlaneByThreePoints(
+    point1=(0.0, 0.0, 0.0), point2=(0.0, 0.45172162719572, 0.0), point3=(0.0, 
+    0.0, 0.782404809180675))
+mdb.models['HexFiberArray'].parts['HexPackPart'].features.changeKey(fromName=
+    'Datum plane-1', toName='d3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#4 ]', ), ), name='EdgeAB')
+mdb.models['HexFiberArray'].ConstrainedSketch(name='PartitionSketch', 
+    sheetSize=10.0, transform=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].MakeSketchTransform(
+    sketchPlane=mdb.models['HexFiberArray'].parts['HexPackPart'].faces[0], 
+    sketchPlaneSide=SIDE1, 
+    sketchUpEdge=mdb.models['HexFiberArray'].parts['HexPackPart'].edges[2], 
+    sketchOrientation=RIGHT, origin=(0.0, 0.0, 0.0)))
+mdb.models['HexFiberArray'].parts['HexPackPart'].projectReferencesOntoSketch(
+    filter=COPLANAR_EDGES, sketch=
+    mdb.models['HexFiberArray'].sketches['PartitionSketch'])
+mdb.models['HexFiberArray'].sketches['PartitionSketch'].ArcByCenterEnds(center=
+    (0.0, 0.0), direction=CLOCKWISE, point1=(0.0, 0.3), point2=(0.3, 0.0))
+mdb.models['HexFiberArray'].sketches['PartitionSketch'].ArcByCenterEnds(center=
+    (0.0, 0.0), direction=CLOCKWISE, point1=(0.0, 0.315172162719572), point2=(
+    0.315172162719572, 0.0))
+mdb.models['HexFiberArray'].sketches['PartitionSketch'].ArcByCenterEnds(center=
+    (0.782404809180675, 0.45172162719572), direction=COUNTERCLOCKWISE, point1=(
+    0.482404809180675, 0.45172162719572), point2=(0.782404809180675, 
+    0.15172162719572))
+mdb.models['HexFiberArray'].sketches['PartitionSketch'].ArcByCenterEnds(center=
+    (0.782404809180675, 0.45172162719572), direction=COUNTERCLOCKWISE, point1=(
+    0.467232646461103, 0.45172162719572), point2=(0.782404809180675, 
+    0.136549464476148))
+mdb.models['HexFiberArray'].parts['HexPackPart'].ShellExtrude(depth=0.1, 
+    flipExtrudeDirection=ON, keepInternalBoundaries=ON, sketch=
+    mdb.models['HexFiberArray'].sketches['PartitionSketch'], sketchOrientation=
+    RIGHT, sketchPlane=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].faces[0], sketchPlaneSide=
+    SIDE1, sketchUpEdge=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges[2])
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#10000000 ]', ), ), name='EdgeAB')
+mdb.models['HexFiberArray'].ConstrainedSketch(name='hexPartitionSketch', 
+    sheetSize=10.0, transform=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].MakeSketchTransform(
+    sketchPlane=mdb.models['HexFiberArray'].parts['HexPackPart'].faces[13], 
+    sketchPlaneSide=SIDE1, 
+    sketchUpEdge=mdb.models['HexFiberArray'].parts['HexPackPart'].edges[28], 
+    sketchOrientation=RIGHT, origin=(0.0, 0.0, 0.0)))
+mdb.models['HexFiberArray'].parts['HexPackPart'].projectReferencesOntoSketch(
+    filter=COPLANAR_EDGES, sketch=
+    mdb.models['HexFiberArray'].sketches['hexPartitionSketch'])
+mdb.models['HexFiberArray'].sketches['hexPartitionSketch'].Line(point1=(0.0, 
+    0.173205080756888), point2=(0.1, 0.173205080756888))
+mdb.models['HexFiberArray'].sketches['hexPartitionSketch'].Line(point1=(0.1, 
+    0.173205080756888), point2=(0.2, 0.0))
+mdb.models['HexFiberArray'].sketches['hexPartitionSketch'].Line(point1=(
+    0.782404809180675, 0.278516546438833), point2=(0.682404809180675, 
+    0.278516546438833))
+mdb.models['HexFiberArray'].sketches['hexPartitionSketch'].Line(point1=(
+    0.682404809180675, 0.278516546438833), point2=(0.582404809180675, 
+    0.45172162719572))
+mdb.models['HexFiberArray'].parts['HexPackPart'].ShellExtrude(depth=0.1, 
+    flipExtrudeDirection=ON, keepInternalBoundaries=ON, sketch=
+    mdb.models['HexFiberArray'].sketches['hexPartitionSketch'], 
+    sketchOrientation=RIGHT, sketchPlane=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].faces[13], 
+    sketchPlaneSide=SIDE1, sketchUpEdge=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges[28])
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #80000 ]', ), ), name='EdgeAB')
+mdb.models['HexFiberArray'].ConstrainedSketch(name='hexcellPartitionSketch', 
+    sheetSize=10.0, transform=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].MakeSketchTransform(
+    sketchPlane=mdb.models['HexFiberArray'].parts['HexPackPart'].faces[25], 
+    sketchPlaneSide=SIDE1, 
+    sketchUpEdge=mdb.models['HexFiberArray'].parts['HexPackPart'].edges[51], 
+    sketchOrientation=RIGHT, origin=(0.0, 0.0, 0.0)))
+mdb.models['HexFiberArray'].parts['HexPackPart'].projectReferencesOntoSketch(
+    filter=COPLANAR_EDGES, sketch=
+    mdb.models['HexFiberArray'].sketches['hexcellPartitionSketch'])
+mdb.models['HexFiberArray'].sketches['hexcellPartitionSketch'].Line(point1=(
+    0.52160320612045, 0.0), point2=(0.260801603060225, 0.45172162719572))
+mdb.models['HexFiberArray'].sketches['hexcellPartitionSketch'].Line(point1=(
+    0.1, 0.173205080756888), point2=(0.260801603060225, 0.45172162719572))
+mdb.models['HexFiberArray'].sketches['hexcellPartitionSketch'].Line(point1=(
+    0.682404809180675, 0.278516546438833), point2=(0.52160320612045, 0.0))
+mdb.models['HexFiberArray'].parts['HexPackPart'].ShellExtrude(depth=0.1, 
+    flipExtrudeDirection=ON, keepInternalBoundaries=ON, sketch=
+    mdb.models['HexFiberArray'].sketches['hexcellPartitionSketch'], 
+    sketchOrientation=RIGHT, sketchPlane=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].faces[25], 
+    sketchPlaneSide=SIDE1, sketchUpEdge=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges[51])
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(cells=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#4 ]', ), ), name='middle_cell_1')
+mdb.models['HexFiberArray'].parts['HexPackPart'].PartitionCellByPlaneThreePoints(
+    cells=mdb.models['HexFiberArray'].parts['HexPackPart'].cells[2], point1=(
+    0.0, 0.0, 0.0), point2=(0.0, 0.45172162719572, 0.782404809180675), point3=(
+    0.1, 0.0, 0.0))
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(cells=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#4 ]', ), ), name='middle_cell_2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].PartitionCellByPlaneThreePoints(
+    cells=mdb.models['HexFiberArray'].parts['HexPackPart'].cells[2], point1=(
+    0.0, 0.0, 0.0), point2=(0.0, 0.45172162719572, 0.782404809180675), point3=(
+    0.1, 0.0, 0.0))
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(cells=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#20 ]', ), ), name='cohesive_zoneA_cell')
+mdb.models['HexFiberArray'].parts['HexPackPart'].PartitionCellByPlaneThreePoints(
+    cells=mdb.models['HexFiberArray'].parts['HexPackPart'].cells[5], point1=(
+    0.0, 0.0, 0.0), point2=(0.0, 0.45172162719572, 0.782404809180675), point3=(
+    0.1, 0.0, 0.0))
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(cells=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#80 ]', ), ), name='cohesive_zoneB_cell')
+mdb.models['HexFiberArray'].parts['HexPackPart'].PartitionCellByPlaneThreePoints(
+    cells=mdb.models['HexFiberArray'].parts['HexPackPart'].cells[7], point1=(
+    0.0, 0.0, 0.0), point2=(0.0, 0.45172162719572, 0.782404809180675), point3=(
+    0.1, 0.0, 0.0))
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(cells=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#200 ]', ), ), name='fiber_cell_A')
+mdb.models['HexFiberArray'].parts['HexPackPart'].PartitionCellByPlaneThreePoints(
+    cells=mdb.models['HexFiberArray'].parts['HexPackPart'].cells[9], point1=(
+    0.0, 0.0, 0.0), point2=(0.0, 0.45172162719572, 0.782404809180675), point3=(
+    0.1, 0.0, 0.0))
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(cells=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#800 ]', ), ), name='cohesive_zoneB_cell')
+mdb.models['HexFiberArray'].parts['HexPackPart'].PartitionCellByPlaneThreePoints(
+    cells=mdb.models['HexFiberArray'].parts['HexPackPart'].cells[11], point1=(
+    0.0, 0.0, 0.0), point2=(0.0, 0.45172162719572, 0.782404809180675), point3=(
+    0.1, 0.0, 0.0))
+mdb.models['HexFiberArray'].parts['HexPackPart'].Mirror(keepInternalBoundaries=
+    ON, keepOriginal=ON, mirrorPlane=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].faces[44])
+mdb.models['HexFiberArray'].parts['HexPackPart'].Mirror(keepInternalBoundaries=
+    ON, keepOriginal=ON, mirrorPlane=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].faces[157])
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(cells=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#80212802 #21280212 #1280 ]', ), ), name='center_fiber')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(cells=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#a0a52a0a #a52a0a52 #52a0 ]', ), ), name='center_fiber_coh_zone')
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'coh_center_ring', operation=DIFFERENCE, sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['center_fiber_coh_zone'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['center_fiber']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(cells=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#d001 ]', ), ), name='corner1_fiber')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(cells=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#2d405 ]', ), ), name='corner1_fiber_coh_zone')
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'coh_corner1_ring', operation=DIFFERENCE, sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['corner1_fiber_coh_zone'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['corner1_fiber']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(cells=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#0 #10000000 #d00 ]', ), ), name='corner2_fiber')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(cells=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#0 #50000000 #2d40 ]', ), ), name='corner2_fiber_coh_zone')
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'coh_corner2_ring', operation=DIFFERENCE, sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['corner2_fiber_coh_zone'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['corner2_fiber']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(cells=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#0 #d00100 ]', ), ), name='corner3_fiber')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(cells=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#0 #2d40500 ]', ), ), name='corner3_fiber_coh_zone')
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'coh_corner3_ring', operation=DIFFERENCE, sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['corner3_fiber_coh_zone'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['corner3_fiber']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(cells=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#100000 #d ]', ), ), name='corner4_fiber')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(cells=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#40500000 #2d ]', ), ), name='corner4_fiber_coh_zone')
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'coh_corner4_ring', operation=DIFFERENCE, sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['corner4_fiber_coh_zone'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['corner4_fiber']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'cohesive_zone', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['coh_corner1_ring'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['coh_corner2_ring'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['coh_corner3_ring'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['coh_corner4_ring'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['coh_center_ring']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'all_fiber_zone', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['corner4_fiber'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['corner3_fiber'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['corner2_fiber'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['corner1_fiber'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['center_fiber']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'all_fiber_coh_zone', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['all_fiber_zone'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['cohesive_zone']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(cells=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].cells, name='all_cells')
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'matrix_zone', operation=DIFFERENCE, sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['all_cells'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['all_fiber_zone']))
+mdb.models['HexFiberArray'].Material(name='MatFiber')
+mdb.models['HexFiberArray'].materials['MatFiber'].Elastic(table=((
+    80000000000.0, 0.2), ))
+mdb.models['HexFiberArray'].Material(name='MatMatrix')
+mdb.models['HexFiberArray'].materials['MatMatrix'].Elastic(table=((
+    3350000000.0, 0.35), ))
+mdb.models['HexFiberArray'].HomogeneousSolidSection(material='MatFiber', name=
+    'fiber', thickness=None)
+mdb.models['HexFiberArray'].HomogeneousSolidSection(material='MatMatrix', name=
+    'matrix', thickness=None)
+mdb.models['HexFiberArray'].parts['HexPackPart'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['all_fiber_zone'], 
+    sectionName='fiber', thicknessAssignment=FROM_SECTION)
+mdb.models['HexFiberArray'].parts['HexPackPart'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['matrix_zone'], 
+    sectionName='matrix', thicknessAssignment=FROM_SECTION)
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #40000 ]', ), ), name='EdgeGH')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:11 #80000000 ]', ), ), name='EdgeHI')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #20000 ]', ), ), name='EdgeIU')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #80000 ]', ), ), name='EdgeJK')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #100000 ]', ), ), name='EdgeKL')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #80000 ]', ), ), name='EdgeLT')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #100 ]', ), ), name='EdgeAB')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:11 #200000 ]', ), ), name='EdgeBC')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #400000 ]', ), ), name='EdgeCR')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #400 ]', ), ), name='EdgeDE')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #8000000 ]', ), ), name='EdgeEF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #10000000 ]', ), ), name='EdgeFS')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #2 ]', ), ), name='EdgeQO')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #2000000 ]', ), ), name='EdgeQN')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #80000000 ]', ), ), name='EdgeOV')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #1000 ]', ), ), name='Egde OW')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #2000 ]', ), ), name='Egde OX')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #400 ]', ), ), name='EdgeOY')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #20000000 ]', ), ), name='EdgeOL')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #200 ]', ), ), name='EdgeOO')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #4 ]', ), ), name='EdgeOM')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #8000 ]', ), ), name='EdgeON')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #400000 ]', ), ), name='EdgeQM')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #80000000 ]', ), ), name='EdgeQP')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:14 #1 ]', ), ), name='EdgeOR')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #200000 ]', ), ), name='EdgeRM')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #1000000 ]', ), ), name='EdgeRV')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #20000 ]', ), ), name='EdgeQB')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #100000 ]', ), ), name='EdgeQC')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #20 ]', ), ), name='EdgeQF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #4000000 ]', ), ), name='EdgeQG')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #80000000 ]', ), ), name='EdgeVG')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #200 ]', ), ), name='EdgeGH2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #800000 ]', ), ), name='EdgeHI2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #200 ]', ), ), name='EdgeIU2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #100 ]', ), ), name='EdgeJK2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #1000 ]', ), ), name='EdgeKL2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #800 ]', ), ), name='EdgeLT2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #1 ]', ), ), name='EdgeAB2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #2000 ]', ), ), name='EdgeBC2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #10000 ]', ), ), name='EdgeCR2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #40000000 ]', ), ), name='EdgeDE2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #8000 ]', ), ), name='EdgeEF2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #200000 ]', ), ), name='EdgeFS2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #1000000 ]', ), ), name='EdgeQO2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #20000 ]', ), ), name='EdgeQN2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #200 ]', ), ), name='EdgeOV2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #4 ]', ), ), name='Egde OW2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #8 ]', ), ), name='Egde OX2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #400 ]', ), ), name='EdgeOY2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #100000 ]', ), ), name='EdgeOL2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #80000000 ]', ), ), name='EdgeOO2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #1000000 ]', ), ), name='EdgeOM2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #20 ]', ), ), name='EdgeON2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #800 ]', ), ), name='EdgeQM2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #200000 ]', ), ), name='EdgeQP2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #2000000 ]', ), ), name='EdgeOR2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #2000 ]', ), ), name='EdgeRM2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #1000000 ]', ), ), name='EdgeRV2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #8000000 ]', ), ), name='EdgeQB2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #80000000 ]', ), ), name='EdgeQC2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #8000000 ]', ), ), name='EdgeQF2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #10000 ]', ), ), name='EdgeQG2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #800000 ]', ), ), name='EdgeVG2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #100 ]', ), ), name='EdgeGH4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#200000 ]', ), ), name='EdgeHI4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #1000 ]', ), ), name='EdgeIU4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #400 ]', ), ), name='EdgeJK4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #40000 ]', ), ), name='EdgeKL4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #10000 ]', ), ), name='EdgeLT4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#40000000 ]', ), ), name='EdgeAB4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#200 ]', ), ), name='EdgeBC4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #100000 ]', ), ), name='EdgeCR4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #1 ]', ), ), name='EdgeDE4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #80000 ]', ), ), name='EdgeEF4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #10000000 ]', ), ), name='EdgeFS4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #2000000 ]', ), ), name='EdgeQO4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #20000 ]', ), ), name='EdgeQN4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #200 ]', ), ), name='EdgeOV4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #4 ]', ), ), name='Egde OW4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #100 ]', ), ), name='Egde OX4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #20000 ]', ), ), name='EdgeOY4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #20000000 ]', ), ), name='EdgeOL4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#80000000 ]', ), ), name='EdgeOO4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#1000000 ]', ), ), name='EdgeOM4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #400 ]', ), ), name='EdgeON4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #4000 ]', ), ), name='EdgeQM4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #800000 ]', ), ), name='EdgeQP4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #2 ]', ), ), name='EdgeOR4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #80000 ]', ), ), name='EdgeRM4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #4 ]', ), ), name='EdgeRV4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #8000000 ]', ), ), name='EdgeQB4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #80000000 ]', ), ), name='EdgeQC4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #80000000 ]', ), ), name='EdgeQF4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #40000 ]', ), ), name='EdgeQG4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #1 ]', ), ), name='EdgeVG4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #1 ]', ), ), name='EdgeGH3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #2000 ]', ), ), name='EdgeHI3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #8 ]', ), ), name='EdgeIU3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #40000000 ]', ), ), name='EdgeJK3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #40 ]', ), ), name='EdgeKL3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #20 ]', ), ), name='EdgeLT3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #400000 ]', ), ), name='EdgeAB3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #2 ]', ), ), name='EdgeBC3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #400 ]', ), ), name='EdgeCR3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #100000 ]', ), ), name='EdgeDE3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #80 ]', ), ), name='EdgeEF3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #20000 ]', ), ), name='EdgeFS3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #10000 ]', ), ), name='EdgeQO3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #200 ]', ), ), name='EdgeQN3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #80000000 ]', ), ), name='EdgeOV3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #1000000 ]', ), ), name='Egde OW3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #40000000 ]', ), ), name='Egde OX3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #20000 ]', ), ), name='EdgeOY3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #10000 ]', ), ), name='EdgeOL3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #200000 ]', ), ), name='EdgeOO3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #4000 ]', ), ), name='EdgeOM3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #1 ]', ), ), name='EdgeON3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #8 ]', ), ), name='EdgeQM3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #2000 ]', ), ), name='EdgeQP3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #200000 ]', ), ), name='EdgeOR3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #80 ]', ), ), name='EdgeRM3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #4 ]', ), ), name='EdgeRV3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #20000 ]', ), ), name='EdgeQB3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #100000 ]', ), ), name='EdgeQC3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #200000 ]', ), ), name='EdgeQF3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #100 ]', ), ), name='EdgeQG3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #80000 ]', ), ), name='EdgeVG3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:11 #40000000 ]', ), ), name='EdgeGHBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #8000 ]', ), ), name='EdgeHIBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:14 #1000 ]', ), ), name='EdgeIUBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #8 ]', ), ), name='EdgeJKBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #20000 ]', ), ), name='EdgeKLBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:14 #2000 ]', ), ), name='EdgeLTBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:11 #80000 ]', ), ), name='EdgeABBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #20 ]', ), ), name='EdgeBCBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:14 #200 ]', ), ), name='EdgeCRBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #800000 ]', ), ), name='EdgeDEBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #80 ]', ), ), name='EdgeEFBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #4000000 ]', ), ), name='EdgeFSBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #10000000 ]', ), ), name='EdgeQOBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #4000 ]', ), ), name='EdgeQNBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #10 ]', ), ), name='EdgeOVBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #4000 ]', ), ), name='Egde OWBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #10000 ]', ), ), name='Egde OXBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #40000 ]', ), ), name='EdgeOYBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:14 #20000 ]', ), ), name='EdgeOLBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:14 #2 ]', ), ), name='EdgeOOBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #8 ]', ), ), name='EdgeOMBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #40 ]', ), ), name='EdgeONBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #100000 ]', ), ), name='EdgeQMBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #40000000 ]', ), ), name='EdgeQPBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:14 #40000 ]', ), ), name='EdgeORBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:12 #20000000 ]', ), ), name='EdgeRMBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #200000 ]', ), ), name='EdgeRVBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #8000 ]', ), ), name='EdgeQBBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #1000 ]', ), ), name='EdgeQCBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #1 ]', ), ), name='EdgeQFBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #400 ]', ), ), name='EdgeQGBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #8000000 ]', ), ), name='EdgeVGBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #100000 ]', ), ), name='EdgeGH2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #80 ]', ), ), name='EdgeHI2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #80 ]', ), ), name='EdgeIU2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #2000000 ]', ), ), name='EdgeJK2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #20 ]', ), ), name='EdgeKL2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #400 ]', ), ), name='EdgeLT2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #400 ]', ), ), name='EdgeAB2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #20000000 ]', ), ), name='EdgeBC2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #4 ]', ), ), name='EdgeCR2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #4000 ]', ), ), name='EdgeDE2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #8000000 ]', ), ), name='EdgeEF2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #80000 ]', ), ), name='EdgeFS2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #80000 ]', ), ), name='EdgeQO2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #10 ]', ), ), name='EdgeQN2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #8000 ]', ), ), name='EdgeOV2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #8 ]', ), ), name='Egde OW2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #40 ]', ), ), name='Egde OX2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #40000 ]', ), ), name='EdgeOY2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #20000 ]', ), ), name='EdgeOL2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #4000000 ]', ), ), name='EdgeOO2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #4000000 ]', ), ), name='EdgeOM2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #10000000 ]', ), ), name='EdgeON2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #400 ]', ), ), name='EdgeQM2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #100000 ]', ), ), name='EdgeQP2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #100000 ]', ), ), name='EdgeOR2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #40000 ]', ), ), name='EdgeRM2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #200000 ]', ), ), name='EdgeRV2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #8000000 ]', ), ), name='EdgeQB2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #4000000 ]', ), ), name='EdgeQC2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:5 #400000 ]', ), ), name='EdgeQF2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #1 ]', ), ), name='EdgeQG2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #40000 ]', ), ), name='EdgeVG2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#80000 ]', ), ), name='EdgeGH4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #20 ]', ), ), name='EdgeHI4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #40000 ]', ), ), name='EdgeIU4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #20000000 ]', ), ), name='EdgeJK4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #80 ]', ), ), name='EdgeKL4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #80000 ]', ), ), name='EdgeLT4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#80 ]', ), ), name='EdgeAB4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#8000000 ]', ), ), name='EdgeBC4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #1000 ]', ), ), name='EdgeCR4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #8000 ]', ), ), name='EdgeDE4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#20000000 ]', ), ), name='EdgeEF4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #1000000 ]', ), ), name='EdgeFS4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #100000 ]', ), ), name='EdgeQO4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #200 ]', ), ), name='EdgeQN4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #8000 ]', ), ), name='EdgeOV4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #10 ]', ), ), name='Egde OW4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #40 ]', ), ), name='Egde OX4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #40000000 ]', ), ), name='EdgeOY4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #20000000 ]', ), ), name='EdgeOL4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #8 ]', ), ), name='EdgeOO4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#2000000 ]', ), ), name='EdgeOM4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#10000000 ]', ), ), name='EdgeON4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #1000 ]', ), ), name='EdgeQM4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #400000 ]', ), ), name='EdgeQP4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #80000000 ]', ), ), name='EdgeOR4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #200000 ]', ), ), name='EdgeRM4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #2 ]', ), ), name='EdgeRV4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #8000000 ]', ), ), name='EdgeQB4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #4000000 ]', ), ), name='EdgeQC4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #1000000 ]', ), ), name='EdgeQF4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #20 ]', ), ), name='EdgeQG4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #2000000 ]', ), ), name='EdgeVG4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #400 ]', ), ), name='EdgeGH3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #20000000 ]', ), ), name='EdgeHI3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:11 #4 ]', ), ), name='EdgeIU3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #40000 ]', ), ), name='EdgeJK3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #8000000 ]', ), ), name='EdgeKL3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:11 #8 ]', ), ), name='EdgeLT3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #40000000 ]', ), ), name='EdgeAB3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #80000 ]', ), ), name='EdgeBC3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #20000000 ]', ), ), name='EdgeCR3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #40 ]', ), ), name='EdgeDE3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #20000 ]', ), ), name='EdgeEF3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #4000 ]', ), ), name='EdgeFS3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #800 ]', ), ), name='EdgeQO3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #80000000 ]', ), ), name='EdgeQN3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #10 ]', ), ), name='EdgeOV3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #2000000 ]', ), ), name='Egde OW3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #10000000 ]', ), ), name='Egde OX3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #40000000 ]', ), ), name='EdgeOY3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:11 #400 ]', ), ), name='EdgeOL3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #400000 ]', ), ), name='EdgeOO3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #10000 ]', ), ), name='EdgeOM3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #40000 ]', ), ), name='EdgeON3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #4 ]', ), ), name='EdgeQM3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #1000 ]', ), ), name='EdgeQP3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:11 #800 ]', ), ), name='EdgeOR3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #400 ]', ), ), name='EdgeRM3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #2 ]', ), ), name='EdgeRV3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #8000 ]', ), ), name='EdgeQB3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #1000 ]', ), ), name='EdgeQC3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #4000 ]', ), ), name='EdgeQF3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:9 #4000000 ]', ), ), name='EdgeQG3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #2000 ]', ), ), name='EdgeVG3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'cohesive_zone_radial_edges', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOL'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOL2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOL2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOL3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOL3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOL4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOL4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOLBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOM'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOM2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOM2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOM3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOM3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOM4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOM4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOMBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeON'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeON2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeON2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeON3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeON3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeON4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeON4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeONBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOO'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOO2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOO2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOO3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOO3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOO4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOO4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOOBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOV2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOV2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOV3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOV3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOV4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOV4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOVBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOY'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOY2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOY2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOY3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOY3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOY4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOY4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOYBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OXBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OX4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OX4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OX3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OX3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OX2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OX2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OX'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OWBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OW4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OW4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OW3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OW3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OW2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OW2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OW']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].seedEdgeByNumber(constraint=
+    FINER, edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#93000000 #254 #20028500 #60000008 #95000000 #4c #4100428', 
+    ' #60000 #93254000 #40000000 #410011 #400 #1524c #2000a000', ' #20002 ]', 
+    ), ), number=1)
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'seed_by_number_edges', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQBBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQB'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQB2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQB2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQB3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQB3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQB4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQB4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQF2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQF2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQF3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQF3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQF4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQF4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQFBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQG'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQGBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQG4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQG4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQG3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQG3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQG2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQG2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQM'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQMBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQM4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQM4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQM3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQM3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQM2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQM2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQP'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQPBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQP4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQP4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQP3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQP3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQP2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQP2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRM'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRM2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRM2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRM3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRM3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRM4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRM4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRMBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRV'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRV2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRV2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRV3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRV3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRV4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRV4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRVBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeVG'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeVG2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeVG2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeVG3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeVG3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeVG4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeVG4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeVGBF']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].seedEdgeByBias(biasMethod=
+    SINGLE, constraint=FINER, end1Edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #89e45000 #a080020 #5 #2 #8750c00 #1842001', 
+    ' #200000 #0 #422750c #8a080 #0 #e4500000 #88200421 ]', ), ), maxSize=
+    0.0206431043400878, minSize=0.0136549464476148)
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'all_matrix_coh_zone_edges', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeABBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeBC'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeBC2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeBC2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeBC3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeBC3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeBC4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeBC4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeBCBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCRBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDEBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEFBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFSBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeGH'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeGH2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeGH2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeGH3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeGH3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeGH4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeGH4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeGHBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHIBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeIU'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeIU2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeIU2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeIU3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeIU3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeIU4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeIU4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeIUBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJKBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKLBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLTBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOL'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOL2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOL2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOL3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOL3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOL4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOL4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOLBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOM'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOM2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOM2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOM3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOM3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOM4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOM4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOMBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeON'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeON2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeON2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeON3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeON3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeON4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeON4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeONBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOO'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOO2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOO2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOO3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOO3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOO4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOO4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOOBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeORBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOV'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOV2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOV2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOV3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOV3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOV4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOV4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOVBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOY'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOY2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOY2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOY3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOY3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOY4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOY4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOYBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQB'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQB2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQB2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQB3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQB3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQB4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQB4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQBBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQC'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQC2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQC2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQC3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQC3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQC4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQC4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQCBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQF2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQF2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQF3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQF3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQF4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQF4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQFBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQG'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQG2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQG2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQG3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQG3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQG4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQG4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQGBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQM'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQM2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQM2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQM3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQM3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQM4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQM4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQMBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQNBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQO'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQO2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQO2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQO3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQO3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQO4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQO4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQOBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQP'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQP2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQP2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQP3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQP3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQP4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQP4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQPBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRM'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRM2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRM2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRM3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRM3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRM4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRM4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRMBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRV'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRV2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRV2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRV3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRV3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRV4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRV4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeRVBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeVG'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeVG2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeVG2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeVG3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeVG3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeVG4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeVG4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeVGBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OW'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OW2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OW2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OW3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OW3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OW4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OW4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OWBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OX'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OX2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OX2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OX3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OX3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OX4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OX4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Egde OXBF']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'seed_by_bias', operation=DIFFERENCE, sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['all_matrix_coh_zone_edges'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['cohesive_zone_radial_edges'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['seed_by_number_edges']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'seed_by_min_max_size', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDEBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEFBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFSBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJKBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKLBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLTBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT4BF']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'seed_by_bias_number', operation=DIFFERENCE, sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['seed_by_bias'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['seed_by_min_max_size']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'backface_flipSet', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeABBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCRBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEFBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHIBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJKBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLTBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeORBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQNBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT4BF']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'frontface_flipSet', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN4']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'front_face_all', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeBC'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeBC2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeBC3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeBC4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeGH'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeGH2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeGH3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeGH4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeIU'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeIU2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeIU3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeIU4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQO'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQO2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQO3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQO4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR4']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name='Set-303', 
+    operation=DIFFERENCE, sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['front_face_all'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['frontface_flipSet']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'front_face_flipright', operation=DIFFERENCE, sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['front_face_all'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['frontface_flipSet']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'frontface_rightflip', operation=DIFFERENCE, sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['front_face_all'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['frontface_flipSet']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'frontface_rightflip', operation=DIFFERENCE, sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['front_face_all'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['frontface_flipSet']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'hex_edges_frontflip', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR4']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'final_frontFlip', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['frontface_rightflip'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['hex_edges_frontflip']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'seed_by_min_max_flip', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeKL'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeFS'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeDE'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLTBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeLT4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJKBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeJK2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEFBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeEF2BF']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=0.03)
+mdb.models['HexFiberArray'].parts['HexPackPart'].seedEdgeByBias(biasMethod=
+    SINGLE, constraint=FINER, end1Edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#20000000 #20088481 #11050000 #80000 #48000000 #200c120 #281800', 
+    ' #400 #48120000 #400c0 #24060 #8 #88a0480 #14180008', ' #2000 ]', ), ), 
+    maxSize=0.0206431043400878, minSize=0.0136549464476148)
+mdb.models['HexFiberArray'].parts['HexPackPart'].seedEdgeByBias(biasMethod=
+    SINGLE, constraint=FINER, end2Edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#20000000 #20000001 #10040000 #80000 #48000000 #2000000 #201000', 
+    ' #400 #120000 #40000 #20040 #8 #480 #10100008', ' #2000 ]', ), ), maxSize=
+    0.0206431043400878, minSize=0.0136549464476148)
+mdb.models['HexFiberArray'].parts['HexPackPart'].seedEdgeByBias(biasMethod=
+    SINGLE, constraint=FINER, end2Edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=(
+    '[#48280280 #2120120 #84101200 #80041002 #20902400 #10a0281 #2010210', 
+    ' #40100084 #20482402 #80010a01 #20301408 #c0280804 #12048120 #424002', 
+    ' #41201 ]', ), ), number=10, ratio=1.44085545139978)
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'frontface_flipset11', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeBC'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeBC2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeBC3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeBC4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeGH'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeGH2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeGH3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeGH4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeIU'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeIU2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeIU3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeIU4']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].seedEdgeByBias(biasMethod=
+    SINGLE, constraint=FINER, end1Edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#200 #100 #1000 #0 #2000 #200:2 #0', 
+    ' #2 #1 #8 #200000 #40000 #20000 ]', ), ), number=10, ratio=
+    1.44085545139978)
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'backside_flip11', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeAB4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeABBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCR4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeCRBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHIBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeHI3BF']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].seedEdgeByBias(biasMethod=
+    SINGLE, constraint=FINER, end1Edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#80 #20 #0 #1000 #400 #80 #0', 
+    ' #40000004 #20000000 #0 #20000000 #80000 #8000 #0', ' #200 ]', ), ), 
+    number=10, ratio=1.44085545139978)
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'hexagon_backface_flip11', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQN4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQNBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeORBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR2BF']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].seedEdgeByBias(biasMethod=
+    SINGLE, constraint=FINER, end1Edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #200 #80000000 #0:2 #10 #100000 #0', 
+    ' #80000000 #0 #800 #0 #4000 #40000 ]', ), ), number=10, ratio=
+    1.44085545139978)
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'hexagon_frontface_flip11', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeOR'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQO'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQO2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQO3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['EdgeQO4']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].seedEdgeByBias(biasMethod=
+    SINGLE, constraint=FINER, end1Edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #2000000 #0 #2 #0 #1000000 #2000000', 
+    ' #0:2 #10000 #200000 #0:2 #2 #1 ]', ), ), number=10, ratio=
+    1.44085545139978)
+mdb.models['HexFiberArray'].parts['HexPackPart'].seedEdgeByNumber(constraint=
+    FINER, edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0 #89e45000 #a080020 #5 #2 #8750c00 #1842001', 
+    ' #200000 #0 #422750c #8a080 #0 #e4500000 #88200421 ]', ), ), number=9)
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:14 #800 ]', ), ), name='Corner1')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #10 ]', ), ), name='Corner2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #80000000 ]', ), ), name='Corner3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #4000 ]', ), ), name='Corner4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #80000 ]', ), ), name='Midedge1')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #1 ]', ), ), name='Midedge2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:11 #40 ]', ), ), name='Midedge3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #1000000 ]', ), ), name='Midedge4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #8000 ]', ), ), name='origin edge')
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name='depth_bias'
+    , sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['origin edge'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Midedge1'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Midedge2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Midedge3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Midedge4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Corner1'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Corner2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Corner3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['Corner4']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].seedEdgeByNumber(constraint=
+    FINER, edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #1004000 #1 #0:2 #88010 #0:2 #80000000', ' #40 #0:2 #800 ]', 
+    ), ), number=5)
+mdb.models['HexFiberArray'].parts['HexPackPart'].setElementType(elemTypes=(
+    ElemType(elemCode=C3D8, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    distortionControl=DEFAULT), ElemType(elemCode=C3D6, elemLibrary=STANDARD), 
+    ElemType(elemCode=C3D4, elemLibrary=STANDARD)), regions=Region(
+    cells=mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#7fce07fc #ce07fce0 #e07f ]', ), )))
+mdb.models['HexFiberArray'].parts['HexPackPart'].setElementType(elemTypes=(
+    ElemType(elemCode=C3D8, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    distortionControl=DEFAULT), ElemType(elemCode=C3D6, elemLibrary=STANDARD), 
+    ElemType(elemCode=C3D4, elemLibrary=STANDARD)), regions=Region(
+    cells=mdb.models['HexFiberArray'].parts['HexPackPart'].cells.getSequenceFromMask(
+    mask=('[#8031f803 #31f8031f #1f80 ]', ), )))
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:11 #1000000 ]', ), ), name='RadialBCBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #100 ]', ), ), name='RadialDEBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:11 #4000 ]', ), ), name='RadialEFBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:14 #100 ]', ), ), name='RadialGHBF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #4000 ]', ), ), name='RadialBC2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #100 ]', ), ), name='RadialDE2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #10 ]', ), ), name='RadialEF2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #8 ]', ), ), name='RadialGH2BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#1000 ]', ), ), name='RadialBC3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #20000 ]', ), ), name='RadialDE3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#4 ]', ), ), name='RadialEF3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #800 ]', ), ), name='RadialGH3BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #4 ]', ), ), name='RadialBC4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:3 #20000 ]', ), ), name='RadialDE4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #1000000 ]', ), ), name='RadialEF4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #40000000 ]', ), ), name='RadialGH4BF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:11 #4000000 ]', ), ), name='RadialBC')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #100 ]', ), ), name='RadialDE')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:11 #1000 ]', ), ), name='RadialEF')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:13 #800000 ]', ), ), name='RadialGH')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #10000 ]', ), ), name='RadialBC2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #100 ]', ), ), name='RadialDE2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:4 #4 ]', ), ), name='RadialEF2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:6 #8000 ]', ), ), name='RadialGH2')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#4000 ]', ), ), name='RadialBC3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #2000 ]', ), ), name='RadialDE3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#1 ]', ), ), name='RadialEF3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #200000 ]', ), ), name='RadialGH3')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:8 #10 ]', ), ), name='RadialBC4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:2 #2000 ]', ), ), name='RadialDE4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:7 #400000 ]', ), ), name='RadialEF4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].Set(edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#0:10 #200 ]', ), ), name='RadialGH4')
+mdb.models['HexFiberArray'].parts['HexPackPart'].SetByBoolean(name=
+    'seed_by_size', sets=(
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialBC'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialBC2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialBC2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialBC3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialBC3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialBC4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialBC4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialBCBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialDE'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialDE2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialDE2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialDE3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialDE3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialDE4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialDE4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialDEBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialEF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialEF2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialEF2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialEF3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialEF3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialEF4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialEF4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialEFBF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialGH'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialGH2'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialGH2BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialGH3'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialGH3BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialGH4'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialGH4BF'], 
+    mdb.models['HexFiberArray'].parts['HexPackPart'].sets['RadialGHBF']))
+mdb.models['HexFiberArray'].parts['HexPackPart'].seedEdgeBySize(constraint=
+    FINER, deviationFactor=0.1, edges=
+    mdb.models['HexFiberArray'].parts['HexPackPart'].edges.getSequenceFromMask(
+    mask=('[#5005 #0 #202000 #20800 #14014 #0 #8100', 
+    ' #1400108 #14 #0 #40000200 #5005000 #0 #800000', ' #100 ]', ), ), 
+    minSizeFactor=0.1, size=0.0171490253938513)
+mdb.models['HexFiberArray'].parts['HexPackPart'].generateMesh()
+mdb.models['HexFiberArray'].rootAssembly.Instance(dependent=ON, name=
+    'HexPackPart-1', part=mdb.models['HexFiberArray'].parts['HexPackPart'])
+mdb.models['HexFiberArray'].parts['HexPackPart'].deleteSets(setNames=(
+    'Corner1', 'Corner2', 'Corner3', 'Corner4', 'EdgeAB', 'EdgeAB2', 
+    'EdgeAB2BF', 'EdgeAB3', 'EdgeAB3BF', 'EdgeAB4', 'EdgeAB4BF', 'EdgeABBF', 
+    'EdgeBC', 'EdgeBC2', 'EdgeBC2BF', 'EdgeBC3', 'EdgeBC3BF', 'EdgeBC4', 
+    'EdgeBC4BF', 'EdgeBCBF', 'EdgeCR', 'EdgeCR2', 'EdgeCR2BF', 'EdgeCR3', 
+    'EdgeCR3BF', 'EdgeCR4', 'EdgeCR4BF', 'EdgeCRBF', 'EdgeDE', 'EdgeDE2', 
+    'EdgeDE2BF', 'EdgeDE3', 'EdgeDE3BF', 'EdgeDE4', 'EdgeDE4BF', 'EdgeDEBF', 
+    'EdgeEF', 'EdgeEF2', 'EdgeEF2BF', 'EdgeEF3', 'EdgeEF3BF', 'EdgeEF4', 
+    'EdgeEF4BF', 'EdgeEFBF', 'EdgeFS', 'EdgeFS2', 'EdgeFS2BF', 'EdgeFS3', 
+    'EdgeFS3BF', 'EdgeFS4', 'EdgeFS4BF', 'EdgeFSBF', 'EdgeGH', 'EdgeGH2', 
+    'EdgeGH2BF', 'EdgeGH3', 'EdgeGH3BF', 'EdgeGH4', 'EdgeGH4BF', 'EdgeGHBF', 
+    'EdgeHI', 'EdgeHI2', 'EdgeHI2BF', 'EdgeHI3', 'EdgeHI3BF', 'EdgeHI4', 
+    'EdgeHI4BF', 'EdgeHIBF', 'EdgeIU', 'EdgeIU2', 'EdgeIU2BF', 'EdgeIU3', 
+    'EdgeIU3BF', 'EdgeIU4', 'EdgeIU4BF', 'EdgeIUBF', 'EdgeJK', 'EdgeJK2', 
+    'EdgeJK2BF', 'EdgeJK3', 'EdgeJK3BF', 'EdgeJK4', 'EdgeJK4BF', 'EdgeJKBF', 
+    'EdgeKL', 'EdgeKL2', 'EdgeKL2BF', 'EdgeKL3', 'EdgeKL3BF', 'EdgeKL4', 
+    'EdgeKL4BF', 'EdgeKLBF', 'EdgeLT', 'EdgeLT2', 'EdgeLT2BF', 'EdgeLT3', 
+    'EdgeLT3BF', 'EdgeLT4', 'EdgeLT4BF', 'EdgeLTBF', 'EdgeOL', 'EdgeOL2', 
+    'EdgeOL2BF', 'EdgeOL3', 'EdgeOL3BF', 'EdgeOL4', 'EdgeOL4BF', 'EdgeOLBF', 
+    'EdgeOM', 'EdgeOM2', 'EdgeOM2BF', 'EdgeOM3', 'EdgeOM3BF', 'EdgeOM4', 
+    'EdgeOM4BF', 'EdgeOMBF', 'EdgeON', 'EdgeON2', 'EdgeON2BF', 'EdgeON3', 
+    'EdgeON3BF', 'EdgeON4', 'EdgeON4BF', 'EdgeONBF', 'EdgeOO', 'EdgeOO2', 
+    'EdgeOO2BF', 'EdgeOO3', 'EdgeOO3BF', 'EdgeOO4', 'EdgeOO4BF', 'EdgeOOBF', 
+    'EdgeOR', 'EdgeOR2', 'EdgeOR2BF', 'EdgeOR3', 'EdgeOR3BF', 'EdgeOR4', 
+    'EdgeOR4BF', 'EdgeORBF', 'EdgeOV', 'EdgeOV2', 'EdgeOV2BF', 'EdgeOV3', 
+    'EdgeOV3BF', 'EdgeOV4', 'EdgeOV4BF', 'EdgeOVBF', 'EdgeOY', 'EdgeOY2', 
+    'EdgeOY2BF', 'EdgeOY3', 'EdgeOY3BF', 'EdgeOY4', 'EdgeOY4BF', 'EdgeOYBF', 
+    'EdgeQB', 'EdgeQB2', 'EdgeQB2BF', 'EdgeQB3', 'EdgeQB3BF', 'EdgeQB4', 
+    'EdgeQB4BF', 'EdgeQBBF', 'EdgeQC', 'EdgeQC2', 'EdgeQC2BF', 'EdgeQC3', 
+    'EdgeQC3BF', 'EdgeQC4', 'EdgeQC4BF', 'EdgeQCBF', 'EdgeQF', 'EdgeQF2', 
+    'EdgeQF2BF', 'EdgeQF3', 'EdgeQF3BF', 'EdgeQF4', 'EdgeQF4BF', 'EdgeQFBF', 
+    'EdgeQG', 'EdgeQG2', 'EdgeQG2BF', 'EdgeQG3', 'EdgeQG3BF', 'EdgeQG4', 
+    'EdgeQG4BF', 'EdgeQGBF', 'EdgeQM', 'EdgeQM2', 'EdgeQM2BF', 'EdgeQM3', 
+    'EdgeQM3BF', 'EdgeQM4', 'EdgeQM4BF', 'EdgeQMBF', 'EdgeQN', 'EdgeQN2', 
+    'EdgeQN2BF', 'EdgeQN3', 'EdgeQN3BF', 'EdgeQN4', 'EdgeQN4BF', 'EdgeQNBF', 
+    'EdgeQO', 'EdgeQO2', 'EdgeQO2BF', 'EdgeQO3', 'EdgeQO3BF', 'EdgeQO4', 
+    'EdgeQO4BF', 'EdgeQOBF', 'EdgeQP', 'EdgeQP2', 'EdgeQP2BF', 'EdgeQP3', 
+    'EdgeQP3BF', 'EdgeQP4', 'EdgeQP4BF', 'EdgeQPBF', 'EdgeRM', 'EdgeRM2', 
+    'EdgeRM2BF', 'EdgeRM3', 'EdgeRM3BF', 'EdgeRM4', 'EdgeRM4BF', 'EdgeRMBF', 
+    'EdgeRV', 'EdgeRV2', 'EdgeRV2BF', 'EdgeRV3', 'EdgeRV3BF', 'EdgeRV4', 
+    'EdgeRV4BF', 'EdgeRVBF', 'EdgeVG', 'EdgeVG2', 'EdgeVG2BF', 'EdgeVG3', 
+    'EdgeVG3BF', 'EdgeVG4', 'EdgeVG4BF', 'EdgeVGBF', 'Egde OW', 'Egde OW2', 
+    'Egde OW2BF', 'Egde OW3', 'Egde OW3BF', 'Egde OW4', 'Egde OW4BF', 
+    'Egde OWBF', 'Egde OX', 'Egde OX2', 'Egde OX2BF', 'Egde OX3', 'Egde OX3BF', 
+    'Egde OX4', 'Egde OX4BF', 'Egde OXBF'))
+mdb.models['HexFiberArray'].parts['HexPackPart'].deleteSets(setNames=(
+    'Midedge1', 'Midedge2', 'Midedge3', 'Midedge4'))
+mdb.models['HexFiberArray'].parts['HexPackPart'].deleteSets(setNames=(
+    'RadialKLBF', 'RadialAB', 'RadialAB2', 'RadialAB2BF', 'RadialAB3', 
+    'RadialAB3BF', 'RadialAB4', 'RadialAB4BF', 'RadialABBF', 'RadialBC', 
+    'RadialBC2', 'RadialBC2BF', 'RadialBC3', 'RadialBC3BF', 'RadialBC4', 
+    'RadialBC4BF', 'RadialBCBF', 'RadialCD', 'RadialCD2', 'RadialCD2BF', 
+    'RadialCD3', 'RadialCD3BF', 'RadialCD4', 'RadialCD4BF', 'RadialCDBF', 
+    'RadialDE', 'RadialDE2', 'RadialDE2BF', 'RadialDE3', 'RadialDE3BF', 
+    'RadialDE4', 'RadialDE4BF', 'RadialDEBF', 'RadialEF', 'RadialEF2', 
+    'RadialEF2BF', 'RadialEF3', 'RadialEF3BF', 'RadialEF4', 'RadialEF4BF', 
+    'RadialEFBF', 'RadialFG', 'RadialFG2', 'RadialFG2BF', 'RadialFG3', 
+    'RadialFG3BF', 'RadialFG4', 'RadialFG4BF', 'RadialFGBF', 'RadialGH', 
+    'RadialGH2', 'RadialGH2BF', 'RadialGH3', 'RadialGH3BF', 'RadialGH4', 
+    'RadialGH4BF', 'RadialGHBF', 'RadialKL', 'RadialKL2', 'RadialKL2BF', 
+    'RadialKL3', 'RadialKL3BFBF', 'RadialKL4', 'RadialKL4BF'))
+mdb.models['HexFiberArray'].parts['HexPackPart'].deleteSets(setNames=(
+    'Set-303', 'cohesive_zone_radial_edges'))
+mdb.models['HexFiberArray'].parts['HexPackPart'].deleteSets(setNames=(
+    'origin edge', 'hexagon_frontface_flip11', 'hexagon_backface_flip11', 
+    'hex_edges_frontflip', 'frontface_rightflip', 'frontface_flipset11', 
+    'frontface_flipSet', 'front_face_flipright', 'final_frontFlip'))
+mdb.models['HexFiberArray'].parts['HexPackPart'].deleteSets(setNames=(
+    'backside_flip11', 'backface_flipSet'))
+del mdb.models['HexFiberArray'].parts['HexPackPart'].sets['front_face_all']
+mdb.models['HexFiberArray'].parts['HexPackPart'].deleteSets(setNames=(
+    'all_fiber_coh_zone', 'center_fiber_coh_zone', 'coh_center_ring', 
+    'coh_corner1_ring', 'coh_corner2_ring', 'coh_corner3_ring', 
+    'coh_corner4_ring', 'cohesive_zoneA_cell', 'cohesive_zoneB_cell', 
+    'corner1_fiber', 'corner1_fiber_coh_zone', 'corner2_fiber', 
+    'corner2_fiber_coh_zone', 'corner3_fiber', 'corner3_fiber_coh_zone', 
+    'corner4_fiber', 'corner4_fiber_coh_zone', 'fiber_cell_A', 'middle_cell_1', 
+    'middle_cell_2'))
+mdb.models['HexFiberArray'].parts['HexPackPart'].deleteSets(setNames=(
+    'all_cells', 'all_matrix_coh_zone_edges', 'center_fiber', 'depth_bias', 
+    'seed_by_bias', 'seed_by_bias_number', 'seed_by_min_max_flip', 
+    'seed_by_min_max_size', 'seed_by_number_edges', 'seed_by_size'))
+mdb.models['HexFiberArray'].materials['MatFiber'].elastic.setValues(table=((
+    230000.0, 0.1), ))
+mdb.models['HexFiberArray'].materials['MatMatrix'].elastic.setValues(table=((
+    2000.0, 0.33), ))
+mdb.models['HexFiberArray'].rootAssembly.regenerate()
+mdb.Job(activateLoadBalancing=False, atTime=None, contactPrint=OFF, 
+    description='', echoPrint=OFF, explicitPrecision=SINGLE, 
+    getMemoryFromAnalysis=True, historyPrint=OFF, memory=90, memoryUnits=
+    PERCENTAGE, model='HexFiberArray', modelPrint=OFF, multiprocessingMode=
+    DEFAULT, name='homogenization.inp', nodalOutputPrecision=SINGLE, numCpus=1, 
+    numDomains=1, numGPUs=0, numThreadsPerMpiProcess=1, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+#* AbaqusNameError: invalid job name
