@@ -3753,4 +3753,4 @@ mdb.models['HexFiberArray'].steps['HomogStiff-Initial'].LoadCase(
 mdb.models['HexFiberArray'].steps['HomogStiff-Initial'].setValues(description=
     'RP_strain')
 mdb.jobs['UD_hex_homogen'].setValues(description='_Scenario_Mechanical_')
-# Save by chri on 2025_09_16-08.42.06; build 2023 2022_09_28-20.11.55 183150
+# Save by chri on 2025_09_16-08.49.41; build 2023 2022_09_28-20.11.55 183150
