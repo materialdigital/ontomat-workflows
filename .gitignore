@@ -1,3 +1,4 @@
 Scripts/*.rpy*
 Scripts/*.rec
+Scripts/__pycache__
 Scripts/abaqus_acis.log
