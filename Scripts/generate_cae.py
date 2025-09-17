@@ -26,10 +26,10 @@ import xyPlot
 import displayGroupOdbToolset as dgo
 import connectorBehavior
 
-def generate_cae(vol_frac, fiber_rad, interface_ratio, depth, num_rad, num_depth, cae_name, job_name, materials):
+def generate_cae(vol_frac, fiber_rad, interface_ratio, depth, num_rad, num_depth, cae_name, job_name, materials, plugin_path):
     
-    sys.path.insert(46, 
-        r'/home/chri/w/OntOMat/Workflow/Scripts/Abaqus_Plugin/MicroMechanics_v1.18/MicroMechanics')
+    # sys.path.insert(46, plugin_path)
+    sys.path.append(plugin_path)
     import microMechanics
     from microMechanics.mmpBackend import Interface
     from microMechanics.mmpBackend.mmpInterface.mmpRVEConstants import *
@@ -93,6 +93,7 @@ if __name__ == "__main__":
     num_depth = str(workflow_input["geometry"]["mesh"]["num_depth"])
     
     sim_path = str(workflow_input["simulation"]["sim_path"]).replace('\\', '\\')
+    plugin_path = str(workflow_input["simulation"]["plugin_path"])
     os.chdir(sim_path)
     
     cae_name = str(workflow_input["simulation"]["cae_name"])
@@ -104,5 +105,5 @@ if __name__ == "__main__":
         f.write("type(vol_frac) = {}\n".format(type(vol_frac)))
     """
     
-    generate_cae(vol_frac, fiber_rad, interface_ratio, depth, num_rad, num_depth, cae_name, job_name, materials)
+    generate_cae(vol_frac, fiber_rad, interface_ratio, depth, num_rad, num_depth, cae_name, job_name, materials, plugin_path)
     write_job(job_name)
