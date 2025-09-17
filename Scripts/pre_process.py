@@ -4,7 +4,7 @@ import subprocess
 from pathlib import Path
 
 
-def pre_process(input_json_path):
+def pre_process(input_json, input_json_path):
     """
     Genearte FE structure (cae and inp files) of a regular, hexagonally alligned
     uni-directional fiber reinforced composite. The backend is the Abaqus
@@ -13,8 +13,8 @@ def pre_process(input_json_path):
 
     Parameters
     ----------
-    input_json_path : STRING
-        Path to a JSON file, which stores all necessary parameters. The JSON should
+    input_json : DICT
+        JSON file, which stores all necessary parameters. The JSON should
         have the following structure:
             {
                 "fiber" : {
@@ -41,15 +41,14 @@ def pre_process(input_json_path):
                     "abaqus_path" : ...         <- Path to Abaqus executable
                     }
             }
+    input_json_path : STRING
+        Path to JSON file.
 
     Returns
     -------
     None.
 
     """
-
-    with open(input_json_path, 'r') as json_file:
-        input_json = json.load(json_file)
 
     # query OntOMat for material parameters -> QueryNode
     fiber_material_ID = input_json["fiber"]["material_id"]

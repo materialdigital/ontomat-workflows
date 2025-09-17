@@ -29,7 +29,7 @@ import connectorBehavior
 def generate_cae(vol_frac, fiber_rad, interface_ratio, depth, num_rad, num_depth, cae_name, job_name, materials):
     
     sys.path.insert(46, 
-        r'c:/SIMULIA/CAE/plugins/2023/MicroMechanics_v1.18/MicroMechanics')
+        r'/home/chri/w/OntOMat/Workflow/Scripts/Abaqus_Plugin/MicroMechanics_v1.18/MicroMechanics')
     import microMechanics
     from microMechanics.mmpBackend import Interface
     from microMechanics.mmpBackend.mmpInterface.mmpRVEConstants import *
