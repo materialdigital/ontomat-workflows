@@ -1,0 +1,27 @@
+{
+	"fiber" : {
+		"material_id" : "carbon",
+		"radius" : 0.3,
+		"interface_ratio" : 0.0,
+		"volume_content" : 0.4
+	},
+	"matrix" : {
+		"material_id" : "PA6"
+	},
+	"geometry" : {
+		"depth" : 0.3,
+		"mesh" : {
+			"num_rad" : 10,
+			"num_depth" : 5
+		}
+	},
+	"simulation" : {
+		"sim_path" : "/home/chri/w/OntOMat/Workflow/Simulation/",
+		"cae_name" : "micro_structure.cae",
+		"job_name" : "UD_hex_homogen",
+		"eval_script_path" : "W:/OntOMat/Workflow/Pyiron/sim/homo_eval.py",
+		"abaqus_path" : "/isi/programs/simulia/2023_1/Commands/abaqus",
+		"abaqus_cores" : 2
+	}
+}
+	
