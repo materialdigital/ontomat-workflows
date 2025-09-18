@@ -4,4 +4,4 @@
 
 ***
 
-Temporary repository to build a pyiron workflow which could look like the figure above.
+Repository to build a pyiron workflow which could look like the figure above.
