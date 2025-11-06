@@ -5,6 +5,7 @@ from odbSection import *
 
 import sys
 import numpy as np
+import json
 
 def homogenize(sim_path, job_name, RVE_volume):
 
@@ -42,8 +43,68 @@ def homogenize(sim_path, job_name, RVE_volume):
     homogenized_stiffness_mandel[:,3:] *= np.sqrt(2)
     homogenized_stiffness_mandel[3:,:] *= np.sqrt(2)
 
-    np.savetxt(sim_path + "homogenized_stiffness_voigt.csv", homogenized_stiffness_voigt, delimiter=",")
-    np.savetxt(sim_path + "homogenized_stiffness_mandel.csv", homogenized_stiffness_mandel, delimiter=",")
+    np.savetxt(sim_path + job_name + "_" + "homogenized_stiffness_voigt.csv", homogenized_stiffness_voigt, delimiter=",")
+    np.savetxt(sim_path + job_name + "_" + "homogenized_stiffness_mandel.csv", homogenized_stiffness_mandel, delimiter=",")
+
+    # numpy to json
+
+    homogenized_stiffness_mandel_dict = {
+        "C11" : homogenized_stiffness_mandel[0,0],
+        "C12" : homogenized_stiffness_mandel[0,1],
+        "C22" : homogenized_stiffness_mandel[1,1],
+        "C13" : homogenized_stiffness_mandel[0,2],
+        "C23" : homogenized_stiffness_mandel[1,2],
+        "C33" : homogenized_stiffness_mandel[2,2],
+        "C14" : homogenized_stiffness_mandel[0,3],
+        "C24" : homogenized_stiffness_mandel[1,3],
+        "C34" : homogenized_stiffness_mandel[2,3],
+        "C44" : homogenized_stiffness_mandel[3,3],
+        "C15" : homogenized_stiffness_mandel[0,4],
+        "C25" : homogenized_stiffness_mandel[1,4],
+        "C35" : homogenized_stiffness_mandel[2,4],
+        "C45" : homogenized_stiffness_mandel[3,4],
+        "C55" : homogenized_stiffness_mandel[4,4],
+        "C16" : homogenized_stiffness_mandel[0,5],
+        "C26" : homogenized_stiffness_mandel[1,5],
+        "C36" : homogenized_stiffness_mandel[2,5],
+        "C46" : homogenized_stiffness_mandel[3,5],
+        "C56" : homogenized_stiffness_mandel[4,5],
+        "C66" : homogenized_stiffness_mandel[5,5],
+    }
+
+    homogenized_stiffness_mandel_json = json.dumps(homogenized_stiffness_mandel_dict, indent=2, sort_keys=True)
+
+    with open(sim_path + job_name + "_" + "homogenized_stiffness_mandel.json", "w") as f:
+        f.write(homogenized_stiffness_mandel_json)
+
+    homogenized_stiffness_voigt_dict = {
+        "C11" : homogenized_stiffness_voigt[0,0],
+        "C12" : homogenized_stiffness_voigt[0,1],
+        "C22" : homogenized_stiffness_voigt[1,1],
+        "C13" : homogenized_stiffness_voigt[0,2],
+        "C23" : homogenized_stiffness_voigt[1,2],
+        "C33" : homogenized_stiffness_voigt[2,2],
+        "C14" : homogenized_stiffness_voigt[0,3],
+        "C24" : homogenized_stiffness_voigt[1,3],
+        "C34" : homogenized_stiffness_voigt[2,3],
+        "C44" : homogenized_stiffness_voigt[3,3],
+        "C15" : homogenized_stiffness_voigt[0,4],
+        "C25" : homogenized_stiffness_voigt[1,4],
+        "C35" : homogenized_stiffness_voigt[2,4],
+        "C45" : homogenized_stiffness_voigt[3,4],
+        "C55" : homogenized_stiffness_voigt[4,4],
+        "C16" : homogenized_stiffness_voigt[0,5],
+        "C26" : homogenized_stiffness_voigt[1,5],
+        "C36" : homogenized_stiffness_voigt[2,5],
+        "C46" : homogenized_stiffness_voigt[3,5],
+        "C56" : homogenized_stiffness_voigt[4,5],
+        "C66" : homogenized_stiffness_voigt[5,5],
+    }
+
+    homogenized_stiffness_voigt_json = json.dumps(homogenized_stiffness_voigt_dict, indent=2, sort_keys=True)
+
+    with open(sim_path + job_name + "_" + "homogenized_stiffness_voigt.json", "w") as f:
+        f.write(homogenized_stiffness_voigt_json)
 
 
 if __name__ == "__main__":

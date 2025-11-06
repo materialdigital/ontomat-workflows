@@ -2,4 +2,5 @@ Scripts/*.rpy*
 Scripts/*.rec
 Scripts/__pycache__
 Scripts/abaqus_acis.log
+Scripts/abaqus_v6.env
 Simulation/UD_hex_homogen.odb

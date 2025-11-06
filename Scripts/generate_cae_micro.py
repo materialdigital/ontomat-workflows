@@ -70,7 +70,6 @@ def write_job(job_name):
     mdb.jobs[job_name].writeInput(consistencyChecking=OFF)
     
 
-
 if __name__ == "__main__":
     
     input_args = sys.argv
@@ -85,19 +84,19 @@ if __name__ == "__main__":
         workflow_input = json.load(f)
         
     
-    vol_frac = str(workflow_input["fiber"]["volume_content"])
-    fiber_rad = str(workflow_input["fiber"]["radius"])
-    interface_ratio = str(workflow_input["fiber"]["interface_ratio"])
-    depth = str(workflow_input["geometry"]["depth"])
-    num_rad = str(workflow_input["geometry"]["mesh"]["num_rad"])
-    num_depth = str(workflow_input["geometry"]["mesh"]["num_depth"])
+    vol_frac = str(workflow_input["micro"]["fiber"]["volume_content"])
+    fiber_rad = str(workflow_input["micro"]["fiber"]["radius"])
+    interface_ratio = str(workflow_input["micro"]["fiber"]["interface_ratio"])
+    depth = str(workflow_input["micro"]["geometry"]["depth"])
+    num_rad = str(workflow_input["micro"]["geometry"]["mesh"]["num_rad"])
+    num_depth = str(workflow_input["micro"]["geometry"]["mesh"]["num_depth"])
     
     sim_path = str(workflow_input["simulation"]["sim_path"]).replace('\\', '\\')
     plugin_path = str(workflow_input["simulation"]["plugin_path"])
     os.chdir(sim_path)
     
-    cae_name = str(workflow_input["simulation"]["cae_name"])
-    job_name = str(workflow_input["simulation"]["job_name"])
+    cae_name = str(workflow_input["simulation"]["micro"]["cae_name"])
+    job_name = str(workflow_input["simulation"]["micro"]["job_name"])
 
     """
     with open("output3.txt", "w") as f:

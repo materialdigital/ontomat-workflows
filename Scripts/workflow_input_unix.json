@@ -1,25 +1,37 @@
 {
-	"fiber" : {
-		"material_id" : "carbon",
-		"radius" : 0.3,
-		"interface_ratio" : 0.0,
-		"volume_content" : 0.4
-	},
-	"matrix" : {
-		"material_id" : "PA6"
-	},
-	"geometry" : {
-		"depth" : 0.3,
-		"mesh" : {
-			"num_rad" : 10,
-			"num_depth" : 5
+	"micro": {
+		"fiber" : {
+			"material_id" : "carbon",
+			"radius" : 0.3,
+			"interface_ratio" : 0.0,
+			"volume_content" : 0.4
+		},
+		"matrix" : {
+			"material_id" : "PA6"
+		},
+		"geometry" : {
+			"depth" : 0.3,
+			"mesh" : {
+				"num_rad" : 10,
+				"num_depth" : 5
+			}
 		}
+	},
+	"meso": {
+		"orientations" : [0,30,-30,60,-60,90],
+		"thickness" : [1,1,1,1,1,1]
 	},
 	"simulation" : {
 		"sim_path" : "/home/chri/w/OntOMat/Workflow/Simulation/",
 		"plugin_path" : "/home/chri/w/OntOMat/Workflow/OntOMat_Workflow/Scripts/Abaqus_Plugin/MicroMechanics_v1.18/MicroMechanics",
-		"cae_name" : "micro_structure.cae",
-		"job_name" : "UD_hex_homogen",
+		"micro" : {
+			"cae_name" : "micro_structure.cae",
+			"job_name" : "UD_hex_homogen"
+		},
+		"meso" : {
+			"cae_name" : "meso_structure.cae",
+			"job_name" : "UD_laminate_homogen"
+		},
 		"eval_script_path" : "/home/chri/w/OntOMat/Workflow/OntOMat_Workflow/Scripts/extract_homogenized_stiffness.py",
 		"abaqus_path" : "/isi/programs/simulia/2023_1/Commands/abaqus",
 		"abaqus_cores" : 2
