@@ -1,3 +1,7 @@
+Notebooks/sim_tmp/
+Notebooks/micro_simulation/
+Notebooks/.ipynb_checkpoints/
+Notebooks/abaqus.*
 Scripts/*.rpy*
 Scripts/*.rec
 Scripts/__pycache__
